@@ -108,7 +108,7 @@
 				E049936425FA69F60035D43B /* SceneDelegate.swift */,
 				E0F6E07A25FABB4800A242BE /* Services */,
 				E049937925FA6B920035D43B /* MainScreen */,
-				E073B8F325FAC65F00B1AD9B /* Jokes */,
+				E073B8F325FAC65F00B1AD9B /* JokesScreens */,
 				E049936B25FA69F90035D43B /* Assets.xcassets */,
 				E049936D25FA69F90035D43B /* LaunchScreen.storyboard */,
 				E049937025FA69F90035D43B /* Info.plist */,
@@ -151,14 +151,14 @@
 			path = ManyJokesScreen;
 			sourceTree = "<group>";
 		};
-		E073B8F325FAC65F00B1AD9B /* Jokes */ = {
+		E073B8F325FAC65F00B1AD9B /* JokesScreens */ = {
 			isa = PBXGroup;
 			children = (
 				E0F6E07E25FABD7600A242BE /* Model */,
 				E0F6E07225FAB85300A242BE /* OneJokeScreen */,
 				E073B8F125FAC63900B1AD9B /* ManyJokesScreen */,
 			);
-			path = Jokes;
+			path = JokesScreens;
 			sourceTree = "<group>";
 		};
 		E073B8F425FAC67100B1AD9B /* View */ = {

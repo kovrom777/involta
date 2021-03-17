@@ -45,7 +45,6 @@ class MainView: UIView {
     }
     
     func animateButtons(){
-        print(#function)
         UIView.animate(withDuration: 1) {
             self.oneRandomJokeButton.alpha = 1
             self.oneRandomJokeButton.pin

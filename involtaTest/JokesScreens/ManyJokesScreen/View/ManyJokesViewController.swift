@@ -30,16 +30,19 @@ class ManyJokesViewController: UIViewController {
             contentView.hideIndicator()
             dataArrayForDB.append(contentsOf: dataBase.readData())
         }else{
-            print("Connected")
-            network.getJokes(url: "https://official-joke-api.appspot.com/random_ten") { (jokes) in
-                self.dataArrayForNetwork.append(contentsOf: jokes)
-                self.contentView.table.reloadData()
-                self.contentView.hideIndicator()
-                print(self.dataArrayForNetwork.count)
-            }
-        
+            
+            fetchJokes()
+            
         }
         
+    }
+    
+    func fetchJokes(){
+        network.getJokes(url: "https://official-joke-api.appspot.com/random_ten") { (jokes) in
+            self.dataArrayForNetwork.append(contentsOf: jokes)
+            self.contentView.table.reloadData()
+            self.contentView.hideIndicator()
+        }
     }
     
     func configureTable(){
@@ -47,11 +50,11 @@ class ManyJokesViewController: UIViewController {
         contentView.table.dataSource = self
         contentView.table.register(ManyJokesTableViewCell.self, forCellReuseIdentifier: ManyJokesTableViewCell.cellId)
     }
-
+    
     override func loadView() {
         view = contentView
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         
@@ -73,7 +76,7 @@ class ManyJokesViewController: UIViewController {
             return
         }
     }
-        
+    
 }
 
 extension ManyJokesViewController: UITableViewDelegate, UITableViewDataSource{
@@ -91,7 +94,7 @@ extension ManyJokesViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ManyJokesTableViewCell.cellId, for: indexPath) as? ManyJokesTableViewCell else{
             return UITableViewCell()
         }
-
+        
         if dataArrayForNetwork.count > 0{
             let data = dataArrayForNetwork[indexPath.row]
             cell.setupCell(id: data.id, type: data.type, setup: data.setup, punchline: data.punchline)
@@ -109,12 +112,8 @@ extension ManyJokesViewController: UITableViewDelegate, UITableViewDataSource{
         if network.isConnectedToNetwork(){
             if tableView.indexPathsForVisibleRows?.last?.row == lastElem{
                 self.contentView.showIndicator()
-                network.getJokes(url: "https://official-joke-api.appspot.com/random_ten") { (jokes) in
-                    self.dataArrayForNetwork.append(contentsOf: jokes)
-                    self.contentView.table.reloadData()
-                    self.contentView.hideIndicator()
-                    return
-                }
+                fetchJokes()
+                return
             }
         }
     }
